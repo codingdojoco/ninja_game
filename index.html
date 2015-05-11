@@ -5,31 +5,170 @@
 </head>
 <body>
 
-	<div id="character" style="position:absolute; top:0px; left:0px;">&#213;</div>
+	<div id="border" style="border: 1px solid red; width: 500px; height: 500px;">
+		<div id="player1" style="position:absolute; top:0px; left:0px;"><img src='img/down1.png' alt='ninja' title='ninja'/></div>
+		<div id="player2" style="position:absolute; top:0px; left:400px;"><img src='img/down1.png' alt='ninja' title='ninja'/></div>
+	</div>
 
 	<script>
 
 
 	function gameLoop()
 	{
-		$('#character').css("left", x+"px");
+		// $('#character').css("left", x+"px");
+
+		//Keeps character in boundaries
+		//player1
+		if (x < 0)
+		{
+			x = 0;
+		} 
+		else if (x > 458)
+		{
+			x = 458;
+		}
+		if (y < 0)
+		{
+			y = 0;
+		} 
+		else if (y > 420)
+		{
+			y = 420;
+		}
+		//player2
+		if (a < 0)
+		{
+			a = 0;
+		} 
+		else if (a > 460)
+		{
+			a = 460;
+		}
+		if (b < 0)
+		{
+			b = 0;
+		} 
+		else if (b > 420)
+		{
+			b = 420;
+		}
+
+		//moves character
+		$('#player1').css({ left: x, top: y});
+		$('#player2').css({ left: a, top: b});
+
 	}
 
 	setInterval(gameLoop, 150);
 
-	var x=0, y=0;
+	var x=0, y=0, a=400, b=0;
 	document.onkeydown = function(e)
 	{
+		//Player 1 , up = 38, down = 40, left = 37, right = 39
+		console.log(e.Keycode);
 		if(e.keyCode == 37)
 		{
+			if ($('#player1 img').attr('src') == 'img/left1.png')
+			{
+				$('#player1 img').attr('src', 'img/left2.png');
+			} 
+			else
+			{
+				$('#player1 img').attr('src', 'img/left1.png');
+			}
 			x = x-10;
 		}
 		else if(e.keyCode == 39)
 		{
+			if ($('#player1 img').attr('src') == 'img/right1.png')
+			{
+				$('#player1 img').attr('src', 'img/right2.png');
+			} 
+			else
+			{
+				$('#player1 img').attr('src', 'img/right1.png');
+			}
 			x = x+10;
 		}
+		if(e.keyCode == 40)
+		{
+			if ($('#player1 img').attr('src') == 'img/down1.png')
+			{
+				$('#player1 img').attr('src', 'img/down2.png');
+			} 
+			else
+			{
+				$('#player1 img').attr('src', 'img/down1.png');
+			}
+			y = y+10; 
+		}
+		else if (e.keyCode == 38)
+		{
+			if ($('#player1 img').attr('src') == 'img/top1.png')
+			{
+				$('#player1 img').attr('src', 'img/top2.png');
+			} 
+			else
+			{
+				$('#player1 img').attr('src', 'img/top1.png');
+			}
+			y = y-10;
+		}
 
-		console.log(e.keyCode, x);
+		//Player 2 , up = 87, down = 83, left = 65, right = 68
+		console.log(e.Keycode);
+		if(e.keyCode == 65)
+		{
+			if ($('#player2 img').attr('src') == 'img/left1.png')
+			{
+				$('#player2 img').attr('src', 'img/left2.png');
+			} 
+			else
+			{
+				$('#player2 img').attr('src', 'img/left1.png');
+			}
+			a = a-10;
+		}
+		else if(e.keyCode == 68)
+		{
+			if ($('#player2 img').attr('src') == 'img/right1.png')
+			{
+				$('#player2 img').attr('src', 'img/right2.png');
+			} 
+			else
+			{
+				$('#player2 img').attr('src', 'img/right1.png');
+			}
+			a = a+10;
+		}
+		if(e.keyCode == 83)
+		{
+			if ($('#player2 img').attr('src') == 'img/down1.png')
+			{
+				$('#player2 img').attr('src', 'img/down2.png');
+			} 
+			else
+			{
+				$('#player2 img').attr('src', 'img/down1.png');
+			}
+			b = b+10; 
+		}
+		else if (e.keyCode == 87)
+		{
+			if ($('#player2 img').attr('src') == 'img/top1.png')
+			{
+				$('#player2 img').attr('src', 'img/top2.png');
+			} 
+			else
+			{
+				$('#player2 img').attr('src', 'img/top1.png');
+			}
+			b = b-10;
+		}
+
+
+		console.log(e.keyCode, x,y);
+		console.log(e.keyCode, a,b);
 	}
 
 	console.log(document);
